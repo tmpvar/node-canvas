@@ -12,6 +12,16 @@
 #include "Canvas.h"
 #include "CanvasGradient.h"
 
+/**
+ * Apple OSX < 10.7 doesn't have a strndup(), so we roll our own
+ */
+#ifdef __APPLE__
+#if __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ < 1070
+char * strndup(const char* s, size_t n);
+#endif
+#endif
+
+
 typedef enum {
   TEXT_DRAW_PATHS,
   TEXT_DRAW_GLYPHS
